@@ -7,10 +7,11 @@ import myContext from '../../context/myContext';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/FirebaseConfig';
+import { auth, fireDB } from '../../firebase/FirebaseConfig';
+import { collection, onSnapshot, Query, query, QuerySnapshot, where } from 'firebase/firestore';
+import Loader from '../../loader/Loader';
 
 const Login = () => {
-
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
 
@@ -33,11 +34,44 @@ const Login = () => {
     
     try {
        const users = await signInWithEmailAndPassword(auth , values.email , values.password);
-       console.log(users);
-       
+
+       try {
+        const q = query(collection(fireDB , "user"), where('uid' , "==" , users?.user?.uid));
+        const data = onSnapshot(q , (QuerySnapshot)=>{
+           let user ;
+           QuerySnapshot.forEach((doc)=> user = doc.data());
+           localStorage.setItem("users" , JSON.stringify(user));
+           setValues({
+            email : "",
+            password :""
+          })
+  
+          toast.success("Login Succcessfully");
+  
+          setLoading(false);
+
+          navigate("/");
+
+          // if(user.role === 'user'){
+          //   navigate("/user-dashboard");
+          // }else{
+          //   navigate("/admin-dashboard");
+          // }
+  
+        
+        })
+
+        return () => data;
+        
+       } catch (error) {
+        console.log(error)
+        setLoading(false);
+       }
+
     } catch (error) {
       console.log(error);
       setLoading(false);
+      return toast.error("please sign up");
     }
 
 
@@ -57,6 +91,9 @@ const Login = () => {
 
   return (
     <section className="grid text-center h-screen items-center p-8">
+        {
+        loading && <Loader/>
+      }
     <div>
       <Typography variant="h3" color="blue-gray" className="mb-2">
         Sign In

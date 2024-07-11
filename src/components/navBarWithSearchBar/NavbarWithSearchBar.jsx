@@ -1,21 +1,31 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   IconButton,
   Input,
+  Collapse,
 } from "@material-tailwind/react";
 import { House } from 'lucide-react';
 import { CircleUserRound } from 'lucide-react';
 import { Grid2X2 } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 
 const NavbarWithSearchBar = () => {
+
+  const user = JSON.parse(localStorage.getItem('users'));
+
+  const navigate = useNavigate();
+
+  const logout = () =>{
+      localStorage.clear('users');
+      navigate("/login");
+  }
 
   const [openNav, setOpenNav] = React.useState(false);
  
@@ -35,11 +45,23 @@ const NavbarWithSearchBar = () => {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
        <House />
-        <a href="/" className="flex items-center">
-          Home
-        </a>
+        <Link to="/" className="flex items-center">Home</Link>
       </Typography>
-      <Typography
+
+     { !user ?  <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="flex items-center gap-x-2 p-1 font-medium"
+      >
+       <House />
+        <Link to="/login" className="flex items-center bg-red-700 text-white rounded p-2">login</Link>
+      </Typography> : ""
+
+     }
+
+
+      { user?.role === "user" &&   <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -49,7 +71,25 @@ const NavbarWithSearchBar = () => {
         <a href="/user-dashboard" className="flex items-center">
           Account
         </a>
-      </Typography>
+      </Typography> 
+
+      }
+
+   { user?.role === "admin" &&   <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="flex items-center gap-x-2 p-1 font-medium"
+      >
+        <CircleUserRound />
+        <a href="/admin-dashboard" className="flex items-center">
+          admin
+        </a>
+      </Typography> 
+
+      }
+
+
       <Typography
         as="li"
         variant="small"
@@ -116,9 +156,9 @@ const NavbarWithSearchBar = () => {
               <path
                 d="M13 13.5L9 9.5M10.3333 6.16667C10.3333 6.7795 10.2126 7.38634 9.97811 7.95252C9.74358 8.51871 9.39984 9.03316 8.9665 9.4665C8.53316 9.89984 8.01871 10.2436 7.45252 10.4781C6.88634 10.7126 6.2795 10.8333 5.66667 10.8333C5.05383 10.8333 4.447 10.7126 3.88081 10.4781C3.31462 10.2436 2.80018 9.89984 2.36683 9.4665C1.93349 9.03316 1.58975 8.51871 1.35523 7.95252C1.12071 7.38634 1 6.7795 1 6.16667C1 4.92899 1.49167 3.742 2.36683 2.86683C3.242 1.99167 4.42899 1.5 5.66667 1.5C6.90434 1.5 8.09133 1.99167 8.9665 2.86683C9.84167 3.742 10.3333 4.92899 10.3333 6.16667Z"
                 stroke="#CFD8DC"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -165,7 +205,7 @@ const NavbarWithSearchBar = () => {
         )}
       </IconButton>
     </div>
-    <MobileNav open={openNav}>
+    <Collapse open={openNav}>
       <div className="container mx-auto">
         {navList}
         <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
@@ -197,9 +237,9 @@ const NavbarWithSearchBar = () => {
                 <path
                   d="M13 13.5L9 9.5M10.3333 6.16667C10.3333 6.7795 10.2126 7.38634 9.97811 7.95252C9.74358 8.51871 9.39984 9.03316 8.9665 9.4665C8.53316 9.89984 8.01871 10.2436 7.45252 10.4781C6.88634 10.7126 6.2795 10.8333 5.66667 10.8333C5.05383 10.8333 4.447 10.7126 3.88081 10.4781C3.31462 10.2436 2.80018 9.89984 2.36683 9.4665C1.93349 9.03316 1.58975 8.51871 1.35523 7.95252C1.12071 7.38634 1 6.7795 1 6.16667C1 4.92899 1.49167 3.742 2.36683 2.86683C3.242 1.99167 4.42899 1.5 5.66667 1.5C6.90434 1.5 8.09133 1.99167 8.9665 2.86683C9.84167 3.742 10.3333 4.92899 10.3333 6.16667Z"
                   stroke="#CFD8DC"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
 
@@ -210,7 +250,7 @@ const NavbarWithSearchBar = () => {
           </Button>
         </div>
       </div>
-    </MobileNav>
+    </Collapse>
   </Navbar>
   )
 }
