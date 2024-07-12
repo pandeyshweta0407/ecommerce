@@ -17,6 +17,7 @@ const AdminDashBoard = () => {
       localStorage.clear('users');
       navigate("/login");
   }
+  
 
 
   return (
@@ -27,7 +28,7 @@ const AdminDashBoard = () => {
                     <h1 className=" text-center text-2xl font-bold text-black-500">Admin Dashboard</h1>
                 </div>
             </div>
-            <div className="px-5">
+            <div className="px-5x">
                 {/* Mid  */}
                 <div className="mid mb-5 ">
                     {/* main  */}
@@ -38,11 +39,11 @@ const AdminDashBoard = () => {
                         </div>
                         {/* text  */}
                         <div className="">
-                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Name : </span>{user?.name}</div>
-                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Email : </span>{user?.email}</div>
-                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Date : </span>{user?.date}</div>
-                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Role : </span>{user?.role}</div>
-                            <button className = "bg-red-200 rounded-lg px-2 py-2  hover:bg-red-500   " onClick={logout} >Logout</button>
+                            <div className=" text-center text-lg text-black-500 "><span className=" font-bold">Name : </span>{user?.name}</div>
+                            <div className=" text-center text-lg text-black-500 "><span className=" font-bold">Email : </span>{user?.email}</div>
+                            <div className=" text-center text-lg text-black-500 "><span className=" font-bold">Date : </span>{user?.date}</div>
+                            <div className=" text-center text-lg text-black-500 "><span className=" font-bold">Role : </span>{user?.role}</div>
+                            <button className = "bg-red-200 rounded-lg px-2  hover:bg-red-500   " onClick={logout} >Logout</button>
                         </div>
                     </div>
                 </div>
