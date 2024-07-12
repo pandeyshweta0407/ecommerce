@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { useState } from "react";
-
 import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import myContext from '../../context/myContext';
@@ -52,13 +51,7 @@ const Login = () => {
 
           navigate("/");
 
-          // if(user.role === 'user'){
-          //   navigate("/user-dashboard");
-          // }else{
-          //   navigate("/admin-dashboard");
-          // }
-  
-        
+               
         })
 
         return () => data;
@@ -73,21 +66,8 @@ const Login = () => {
       setLoading(false);
       return toast.error("please sign up");
     }
-
-
-
-
-
-
-
-
-
-
   }
   
-
-
-
 
   return (
     <section className="grid text-center h-screen items-center p-8">

@@ -13,19 +13,11 @@ import { Grid2X2 } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from "react-router-dom";
 
-
-
-
 const NavbarWithSearchBar = () => {
 
   const user = JSON.parse(localStorage.getItem('users'));
 
   const navigate = useNavigate();
-
-  const logout = () =>{
-      localStorage.clear('users');
-      navigate("/login");
-  }
 
   const [openNav, setOpenNav] = React.useState(false);
  
@@ -48,19 +40,6 @@ const NavbarWithSearchBar = () => {
         <Link to="/" className="flex items-center">Home</Link>
       </Typography>
 
-     { !user ?  <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"
-      >
-       <House />
-        <Link to="/login" className="flex items-center bg-red-700 text-white rounded p-2">login</Link>
-      </Typography> : ""
-
-     }
-
-
       { user?.role === "user" &&   <Typography
         as="li"
         variant="small"
@@ -75,7 +54,7 @@ const NavbarWithSearchBar = () => {
 
       }
 
-   { user?.role === "admin" &&   <Typography
+      { user?.role === "admin" &&   <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -83,12 +62,11 @@ const NavbarWithSearchBar = () => {
       >
         <CircleUserRound />
         <a href="/admin-dashboard" className="flex items-center">
-          admin
+          Account
         </a>
       </Typography> 
 
       }
-
 
       <Typography
         as="li"

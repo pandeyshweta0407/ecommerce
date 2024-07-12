@@ -4,8 +4,21 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import ProductDetail from '../../components/admin/ProductDetail';
 import OrderDetail from '../../components/admin/OrderDetail';
 import UserDetail from '../../components/admin/UserDetail';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashBoard = () => {
+
+   
+  const user = JSON.parse(localStorage.getItem('users'));
+
+  const navigate = useNavigate();
+
+  const logout = () =>{
+      localStorage.clear('users');
+      navigate("/login");
+  }
+
+
   return (
     <div>
             {/* Top */}
@@ -25,8 +38,11 @@ const AdminDashBoard = () => {
                         </div>
                         {/* text  */}
                         <div className="">
-                            <h1 className=" text-center text-lg text-black-500"><span className=" font-bold">Name :</span> Kamal Nayan Upadhyay</h1>
-                            <h1 className=" text-center text-lg text-black-500"><span className=" font-bold">Email :</span> test@gmail.com</h1>
+                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Name : </span>{user?.name}</div>
+                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Email : </span>{user?.email}</div>
+                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Date : </span>{user?.date}</div>
+                            <div className=" text-center text-lg text-black-500 py-2"><span className=" font-bold">Role : </span>{user?.role}</div>
+                            <button className = "bg-red-200 rounded-lg px-2 py-2  hover:bg-red-500   " onClick={logout} >Logout</button>
                         </div>
                     </div>
                 </div>
