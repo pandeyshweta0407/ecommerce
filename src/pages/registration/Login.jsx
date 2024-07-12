@@ -49,7 +49,11 @@ const Login = () => {
   
           setLoading(false);
 
-          navigate("/");
+          if(user.role==="user"){
+            navigate("/user-dashboard");
+          }else{
+            navigate("/admin-dashboard");
+          }
 
                
         })
