@@ -1,8 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/layout/Layout'
 import myContext from '../../context/myContext';
 import Loader from '../../loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, deleteFromCart } from '../../redux/cartSlice';
+import toast from 'react-hot-toast';
 
 
 
@@ -12,6 +15,23 @@ const AllProduct = () => {
 
     const context = useContext(myContext);
     const {loading , getAllProduct} = context;
+
+    const cartItems = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    const addCart = (item)=>{
+      dispatch(addToCart(item));
+      toast.success("Added to cart")
+    }
+  
+    const deleteCart = (item)=>{
+      dispatch(deleteFromCart(item));
+      toast.success("deleted from cart")
+    }
+  
+    useEffect(()=>{
+      localStorage.setItem('cart' , JSON.stringify(cartItems));
+    },[cartItems]);
 
 
   return (
@@ -44,12 +64,16 @@ const AllProduct = () => {
                     {description}
                     </p>
                   </div>
-                  <div className="p-6 pt-0">
-                    <button
-                      className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                      type="button">
-                      Add to Cart
+                  <div className="p-6 pt-0">  
+                  {
+                     cartItems.some((p)=> p.id === item.id) ? 
+                     <button onClick={()=>{deleteCart(item)}} className=" bg-red-500 hover:bg-red-900 w-full text-white py-[4px] rounded-lg font-bold">
+                     Delete from Cart 
+                    </button> :
+                     <button onClick={()=>{addCart(item)}} className=" bg-green-500 hover:bg-green-900 w-full text-white py-[4px] rounded-lg font-bold">
+                     Add to Cart 
                     </button>
+                  }
                   </div>
                 </div> 
                  )

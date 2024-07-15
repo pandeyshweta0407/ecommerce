@@ -61,7 +61,7 @@ const UpadateProductPage = () => {
             price : product?.price,
             productImageUrl : product?.productImageUrl,
             description : product?.description,
-            
+            quantity : product?.quantity,
             time :  product?.time,
             date : product?.date,
         

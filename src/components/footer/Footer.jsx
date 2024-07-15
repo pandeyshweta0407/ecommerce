@@ -8,13 +8,13 @@ const Footer = () => {
     <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
        <div className="mr-4 cursor-pointer text-2xl py-1.5 font-medium text-transparent bg-gradient-to-r bg-clip-text  from-blue-500 to-green-500">Response</div>
 
-      <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+      <ul className="flex flex-row flex-wrap items-center justify-center gap-y-2 gap-x-8">
         <li>
           <Typography
             as="a"
             href="#"
             color="blue-gray"
-            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+            className="font-normal underline transition-colors hover:text-blue-500 focus:text-blue-500"
           >
             About Us
           </Typography>
@@ -24,7 +24,7 @@ const Footer = () => {
             as="a"
             href="#"
             color="blue-gray"
-            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+            className="font-normal underline transition-colors hover:text-blue-500 focus:text-blue-500"
           >
             License
           </Typography>
@@ -34,7 +34,7 @@ const Footer = () => {
             as="a"
             href="#"
             color="blue-gray"
-            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+            className="font-normal underline transition-colors hover:text-blue-500 focus:text-blue-500"
           >
             Contribute
           </Typography>
@@ -44,7 +44,7 @@ const Footer = () => {
             as="a"
             href="#"
             color="blue-gray"
-            className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+            className="font-normal underline transition-colors hover:text-blue-500 focus:text-blue-500"
           >
             Contact Us
           </Typography>
