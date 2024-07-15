@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 
 import {
@@ -8,51 +8,69 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { HeartIcon } from "@heroicons/react/24/outline";
+import myContext from '../../context/myContext';
+import { useParams } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
+import { fireDB } from '../../firebase/FirebaseConfig';
+
 
 const ProductInfo = () => {
+
+   const context = useContext(myContext);
+   const {loading , setLoading} = context;
+   
+   const [product , setProduct ] = useState('');
+   
+   const {id} = useParams()
+
+   const getProduct = async () =>{
+    setLoading(true);
+    try{
+      const productTemp = await getDoc(doc(fireDB , "product" , id));
+      console.log(productTemp.data())
+      setProduct(productTemp.data());
+      setLoading(false);
+    }catch(error){
+      console.log(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(()=>{
+      getProduct();
+  },[]);
+
+
+
+
+
+
+
   return (
      <Layout>
-        <section className="py-16 px-8 text-white">
+        <section className="py-16 px-8 text-black">
       <div className="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2">
         <img
-          src="https://www.material-tailwind.com/image/product-4.png"
+          src={product?.productImageUrl}
           alt="pink blazer"
           className="h-[36rem]"
         />
-        <div>
-          <Typography className="mb-4" variant="h3">
-            Premium Blazer
+        <div className='flex flex-col items-start'>
+          <Typography className="mb-4 w-10" variant="h3">
+             {product?.title}
           </Typography>
-          <Typography variant="h5">$1,490</Typography>
-          <Typography className="!mt-4 text-base font-normal leading-[27px] !text-white">
-            As we live, our hearts turn colder. Cause pain is what we go through
-            as we become older. We get insulted by others, lose trust for those
-            others. We get back stabbed by friends. It becomes harder for us to
-            give others a hand. We get our heart broken by people we love, even
-            that we give them all we have. Then we lose family over time. What
-            else could rust the heart more over time? Blackgold.
+          <Typography variant="h5 ">₹{product?.price}</Typography>
+          <Typography className="!mt-4 m-2 text-base font-normal leading-[27px] !text-black">
+           {product.description}
           </Typography>
-          <div className="my-8 flex items-center gap-2">
-            <Rating value={4} className="text-amber-500" />
-            <Typography className="!text-sm font-bold !text-gray-700">
-              4.0/5 (100 reviews)
-            </Typography>
-          </div>
-          <Typography color="blue-gray" variant="h6">
-            Color
-          </Typography>
-          <div className="my-8 mt-3 flex items-center gap-2">
-            <div className="h-5 w-5 rounded border border-gray-900 bg-blue-gray-600 "></div>
-            <div className="h-5 w-5 rounded border border-blue-gray-100 "></div>
-            <div className="h-5 w-5 rounded border border-blue-gray-100 bg-gray-900 "></div>
-          </div>
-          <div className="mb-4 flex w-full items-center gap-3 md:w-1/2 ">
-            <Button color="gray" className="w-52">
+         
+        
+          
+          <div className="my-8   flex justify-center items-center gap-3 md:w-1/2 ">
+            <Button color="gray" className="w-full">
               Add to Cart
             </Button>
-            <IconButton color="gray" variant="text" className="shrink-0">
-              <HeartIcon className="h-6 w-6" />
-            </IconButton>
+           
           </div>
         </div>
       </div>

@@ -63,7 +63,7 @@ const AddProductPage = () => {
           setLoading(true);
 
           try{
-            const productRef = collection(fireDB , 'products');
+            const productRef = collection(fireDB , 'product');
             await addDoc(productRef , product);
             toast.success("Add Product Successfully");
             navigate('/admin-dashboard');
@@ -80,14 +80,15 @@ const AddProductPage = () => {
 
   return (
     <div>
-      {loading && <Loader/>}
+      <div className=''>{loading && <Loader/>}</div>
     <div className='flex justify-center items-center h-screen'>
+   
         {/* Login Form  */}
         <div className="login_Form px-8 py-6 bg-white p-8 border-2 border-neutral-400 rounded-3xl shadow-md">
             {/* Top Heading  */}
             <div className="mb-5">
                 <h2 className='text-center text-2xl font-bold text-black '>
-                  Add your product
+                  Add Product
                 </h2>
             </div>
             {/* Input One  */}

@@ -1,24 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import User from '../../assets/user.png';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import ProductDetail from '../../components/admin/ProductDetail';
 import OrderDetail from '../../components/admin/OrderDetail';
 import UserDetail from '../../components/admin/UserDetail';
 import { useNavigate } from 'react-router-dom';
+import myContext from '../../context/myContext';
 
 const AdminDashBoard = () => {
 
+    const context = useContext(myContext);
+    const {getAllProduct} = context ;
    
-  const user = JSON.parse(localStorage.getItem('users'));
+    const user = JSON.parse(localStorage.getItem('users'));
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const logout = () =>{
+    const logout = () =>{
       localStorage.clear('users');
       navigate("/login");
   }
   
-
 
   return (
     <div>
@@ -76,7 +78,7 @@ const AdminDashBoard = () => {
                                         <path d="m15 11-1 9" />
                                     </svg>
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >{getAllProduct.length}</h2>
                                 <p className=" text-black-500  font-bold" >Total Products</p>
                             </div>
                         </Tab>

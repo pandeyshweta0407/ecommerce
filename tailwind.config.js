@@ -11,5 +11,15 @@ import withMT from "@material-tailwind/react/utils/withMT";
    plugins: [
     require('flowbite/plugin')  
    ],
+   "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
  });
  

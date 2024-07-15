@@ -1,52 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/layout/Layout'
+import myContext from '../../context/myContext';
+import Loader from '../../loader/Loader';
 
-const productData =[
-    {
-      id:1,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    },
-    {
-      id:2,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    },
-    {
-      id:3,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    }
-]
+
 
 
 const AllProduct = () => {
     const navigate = useNavigate();
+
+    const context = useContext(myContext);
+    const {loading , getAllProduct} = context;
+
 
   return (
     <Layout>
          <div className=' flex flex-col items-center justify-center w-full '  >
        <div className='text-3xl text-black my-5'>ALL Products</div>
           <div className='container px-5 py-5 mx-auto flex flex-row flex-wrap items-center justify-center '  >
+            {loading && <Loader/>}
           {
-              productData.map((item )=>{
-                 const {id ,image , title , price , desc } = item;
+              getAllProduct.map((item )=>{
+                const {id , title , price , description , productImageUrl } = item;
                  return (
                   <div key ={id} className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 ml-2.5">
                   <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
                     <img
-                      onClick={()=>navigate('/productinfo')}
-                      src={image}
+                      onClick={()=>navigate(`/productinfo/${id}`)}
+                      src={productImageUrl}
                       alt="card-image" className="object-cover w-full h-full" />
                   </div>
                   <div className="p-6">
@@ -59,7 +41,7 @@ const AllProduct = () => {
                       </p>
                     </div>
                     <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
-                    {desc}
+                    {description}
                     </p>
                   </div>
                   <div className="p-6 pt-0">

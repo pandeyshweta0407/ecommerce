@@ -1,93 +1,59 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-
-const productData =[
-    {
-      id:1,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    },
-    {
-      id:2,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    },
-    {
-      id:3,
-      image:"https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80",
-      title:"Apple AirPods",
-      price:" $95.00 " ,
-      desc :" With plenty of talk and listen time, voice-activated Siri access, and anavailable wireless charging case.",
-      quantity:"2",
-    }
-]
-
+import React, { useContext } from 'react'
+import myContext from '../../context/myContext';
+import Loader from '../../loader/Loader';
 
 const HomePageProductCard = () => {
 
-   const navigate = useNavigate();
+  const context = useContext(myContext);
+  const { loading , getAllProduct} = context ;
 
   return (
-    <div className=' flex flex-col items-center justify-center w-full '  >
-       <div className='text-3xl text-black my-4 '>ALL Products</div>
-          <div className='container px-5 py-5 mx-auto flex flex-row flex-wrap items-center justify-center '  >
-          {
-              productData.map((item )=>{
-                 const {id ,image , title , price , desc } = item;
-                 return (
-                  <div key ={id} className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 ml-2.5">
-                  <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
-                    <img
-                      onClick={()=>navigate('/productinfo')}
-                      src={image}
-                      alt="card-image" className="object-cover w-full h-full" />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-                       {title}
-                      </p>
-                      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-                     {price}
-                      </p>
-                    </div>
-                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
-                    {desc}
-                    </p>
-                  </div>
-                  <div className="p-6 pt-0">
-                    <button
-                      className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                      type="button">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div> 
-                 )
-              })
-            }
-
-
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
+    <div className="mt-10">
+    {/* Heading  */}
+    <div className="">
+        <h1 className=" text-center mb-5 text-2xl font-semibold">Bestselling Products</h1>
     </div>
+    {/* main  */}
+    <section className="text-gray-600 body-font">
+        <div className="container px-5 py-5 mx-auto">
+            <div className="flex flex-wrap -m-4">
+                {getAllProduct.slice(0,8).map((item, index) => {
+                    const { id, title, price, description ,productImageUrl } = item
+                    return (
+                        <div key={index} className="p-4 w-full md:w-1/4">
+                            <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
+                                <img
+                                onClick={()=> navigate('/productinfo')}
+                                    className="lg:h-80  h-96 w-full"
+                                    src={productImageUrl}
+                                    alt="blog"
+                                />
+                                <div className="p-6">
+                                    <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+                                    </h2>
+                                    <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+                                        {title.substring(0, 25)}
+                                    </h1>
+                                    <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+                                        ₹{price}
+                                    </h1>
+                                    <div>
+                                      {description}
+                                    </div>
+                                    <div className="flex justify-center ">
+                                        <button className=" bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    </section>
+</div>
+
   )
 }
 
