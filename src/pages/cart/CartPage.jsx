@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
 import { Trash } from 'lucide-react'
 import { decrementQuantity, deleteFromCart, incrementQuantity } from "../../redux/cartSlice";
-import { useEffect } from "react";
-
-
-
+import { useEffect, useState } from "react";
+import BuyNowModel from "../../components/BuyNowModel/BuyNowModel";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import { fireDB } from "../../firebase/FirebaseConfig";
 
 
 const CartPage = () => {
-
 
   const cartItems = useSelector((state)=>state.cart);
   const dispatch = useDispatch();
@@ -28,22 +29,106 @@ const CartPage = () => {
   }
 
 
+  
+//   console.log(cartItems)
+
+const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
+
+const cartTotal = cartItems.map(item => item.price * item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
+ 
+console.log(cartTotal);
+
   useEffect(()=>{
         localStorage.setItem('cart' , JSON.stringify(cartItems));
   },[cartItems]);
 
 
-  console.log(cartItems)
+  // user 
+  const user = JSON.parse(localStorage.getItem('users'));
+
+  const [addressInfo , setAddressInfo ] = useState({
+    name : "",
+    address :"",
+    pincode : "",
+    mobileNum : "",
+    time : Timestamp.now(),
+    date : new Date().toLocaleString(
+        "en-US",{
+            month : "short",
+            day : "2-digit",
+            year : "numeric",
+        }
+    ) 
+  });
 
 
+   const buyNowFunction = () => {
+    if(addressInfo.name==="" || addressInfo.address===""  || addressInfo.pincode===""  || addressInfo.mobileNum===""  ) {
+        return toast.error("All Fields are required");
+    }    
+
+    var options = {
+        key: "rzp_test_HWrlCiUHhw2j2k" ,
+        key_secret:"uvyQRjRftXcdY75gE9SQVh0m" ,
+        amount: Number(cartTotal) ,
+        currency: "INR",
+        order_receipt: 'order_rcptid_' + addressInfo.name,
+        name: "Response",
+        description: "for testing purpose",
+        handler: function (response) {
+            console.log(response)
+            toast.success('Payment Successful')
+
+            const paymentId = response.razorpay_payment_id
+
+            const orderInfo = {
+                cartItems, 
+                addressInfo, 
+                email : user.email,
+                userId : user.uid,
+                status : "confirmed",
+                time : Timestamp.now(),
+                date : new Date().toLocaleString(
+                    "en-US",{
+                        month : "short",
+                        day : "2-digit",
+                        year : "numeric",
+                    }
+                ),
+                paymentId
+
+            }
+        
+            try{
+                const orderRef = collection(fireDB , 'order');
+                addDoc(orderRef , orderInfo);
+                setAddressInfo({
+                    name : "",
+                    address:"",
+                    pincode:"",
+                    mobileNum: "",
+                })
+                toast.success("Order placed Successfully")
+            }catch(error){
+                console.log(error)
+                toast.success("Order not placed Successfully")
+            }
+        
 
 
+        },
+    
+        theme: {
+            color: "#3399cc"
+        }
+    };
+    
+    var pay = new window.Razorpay(options);
+    pay.open();
+    console.log(pay)
 
-  const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
-
-  const cartTotal = cartItems.map(item => item.price * item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
-
-
+   
+   }
 
 
     return (
@@ -166,11 +251,11 @@ const CartPage = () => {
                                 </dl>
                                 <div className="px-2 pb-4 font-medium text-green-700">
                                 <div className="flex gap-4 mb-6">
-                                    <button
-                                        className="w-full px-4 py-3 text-center text-gray-100 bg-pink-600 border border-transparent dark:border-gray-700 hover:border-pink-500 hover:text-pink-700 hover:bg-pink-100 rounded-xl"
-                                    >
-                                        Buy now
-                                    </button>
+                               {
+                                user ? 
+                                < BuyNowModel addressInfo = {addressInfo} setAddressInfo = {setAddressInfo} buyNowFunction ={buyNowFunction}/>
+                                  : <Navigate to={'/login'}/>
+                               }
                                 </div>
                                 </div>
                             </div>

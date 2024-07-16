@@ -98,7 +98,7 @@ const ProductInfo = () => {
        
          
          <div className="my-8   flex justify-center items-center gap-3 md:w-1/2 ">
-         {
+                {
                      cartItems.some((p)=> p.id === product.id) ? 
                      <button onClick={()=>{deleteCart(product)}} className=" bg-red-500 hover:bg-red-900 w-full text-white py-[4px] rounded-lg font-bold">
                      Delete from Cart 
@@ -112,9 +112,7 @@ const ProductInfo = () => {
        </div>
      </div>
          }
-
-
-     
+    
     </section>
      </Layout>
   )
