@@ -70,7 +70,7 @@ console.log(cartTotal);
     var options = {
         key: "rzp_test_HWrlCiUHhw2j2k" ,
         key_secret:"uvyQRjRftXcdY75gE9SQVh0m" ,
-        amount: Number(cartTotal) ,
+        amount: Number(cartTotal*100) ,
         currency: "INR",
         order_receipt: 'order_rcptid_' + addressInfo.name,
         name: "Response",
