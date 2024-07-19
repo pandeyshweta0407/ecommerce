@@ -50,12 +50,12 @@ const Login = () => {
           setLoading(false);
 
           if(user.role==="user"){
-            navigate("/");
+            navigate("/home");
           }else{
             navigate("/admin-dashboard");
-          }
-
-               
+          }  
+          
+          
         })
 
         return () => data;
@@ -174,7 +174,7 @@ const Login = () => {
             or
           </Typography>          
         </div>
-        <Button
+        <Button    
           variant="outlined"
           size="lg"
           className="mt-6 flex h-12 items-center justify-center gap-2"

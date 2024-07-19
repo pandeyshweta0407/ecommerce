@@ -125,9 +125,7 @@ console.log(cartTotal);
     
     var pay = new window.Razorpay(options);
     pay.open();
-    console.log(pay)
-
-   
+    console.log(pay);
    }
 
 
