@@ -50,7 +50,7 @@ const Login = () => {
           setLoading(false);
 
           if(user.role==="user"){
-            navigate("/home");
+            navigate("/");
           }else{
             navigate("/admin-dashboard");
           }  
