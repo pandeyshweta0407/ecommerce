@@ -1,124 +1,159 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import myContext from '../../context/myContext';
 
 const OrderDetail = () => {
 
-    // const 
-
-
-    // const {getAllOrder} = context ;
-
-  return (
-    
+    const context = useContext(myContext);
+    const {getAllOrder , deleteOrder } = context;
+    console.log(getAllOrder);
+ 
+  return (    
     <div>
         <div className="py-5">
-            <h1 className=" text-xl text-pink-300 font-bold">All Order</h1>
+            <h1 className=" text-xl text-black font-bold">All Order</h1>
         </div>
-     
         <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border border-collapse sm:border-separate border-pink-100 text-pink-400" >
-                <tbody>
-                    <tr>
-                        <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara">
+            <table className="w-full text-left border border-collapse sm:border-separate border-black text-black" >
+                <thead key="thead">
+                    <tr className='' >
+                        <th scope="col" className="h-12 px-2 text-md border-l first:border-l-0  border-black text-black  font-bold fontPara">
                          S.No.
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-2 text-md font-bold fontPara border-l first:border-l-0 border-black text-black">
                         Order Id 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
                         Image  
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
                         Tittle 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-                        
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Price
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Quantity
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Total Price 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Status
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Name 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Address
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Pincode 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Phone number 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Email
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Date
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-                        </th>
-                        <th scope="col"
-                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+                            className="h-12 px-6 text-md font-bold fontPara border-l first:border-l-0  border-black text-black">
+                        Action
                         </th>
                     </tr>
-                    <tr className="text-pink-300">
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">
-                            {'order Id'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            <img src="" alt="" />
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'title'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'category'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            ₹ {'price'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'quantity'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            ₹ {'total price'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'status'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'name'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'address'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'pincode'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'phone Number'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'email'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-                            {'date'}
-                        </td>
-                        <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 text-red-500 cursor-pointer ">
-                        </td>
-                    </tr>
+
+                   </thead>
+
+                   <tbody key="tbody">
+                    {
+                        getAllOrder.map((order , index)=>{
+                            return (
+                             <>
+                              {
+                                order.cartItems.map((item)=>{
+ 
+                                    const {id , productImageUrl , title , price , quantity } =item;
+
+                                    return (
+                                        <tr key={index} className="text-black">
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black">
+                                {index + 1}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black ">
+                                    {id}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    <img src={productImageUrl} alt="" />
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-blackfirst-letter:uppercase ">
+                                    {title}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-black text-black first-letter:uppercase ">
+                                    ₹ {price}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {quantity}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    ₹ {quantity * price }
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-blackfirst-letter:uppercase ">
+                                    {order.status}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.addressInfo.name}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.addressInfo.address}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.addressInfo.pincode}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.addressInfo.mobileNum}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.email}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black first-letter:uppercase ">
+                                    {order.date}
+                                </td>
+                                <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0  border-black text-black  cursor-pointer ">
+                                <button 
+                                onClick={() => { deleteOrder(order.id) }}   
+                                className="bg-red-300 text-xl  rounded-md  mb-2 hover:bg-red-500 text-black border-2 border-red-400"
+                                >
+                                Delete
+                                </button>
+                                </td>
+                            </tr>
+                                    )
+                                })
+                              }
+                             
+                             </>
+                            )
+                        })
+                
+                    }
+
+
+                   
                 </tbody>
             </table>
         </div>

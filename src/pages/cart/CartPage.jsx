@@ -65,69 +65,39 @@ console.log(cartTotal);
    const buyNowFunction = () => {
     if(addressInfo.name==="" || addressInfo.address===""  || addressInfo.pincode===""  || addressInfo.mobileNum===""  ) {
         return toast.error("All Fields are required");
-    }    
-
-    var options = {
-        key: "rzp_test_HWrlCiUHhw2j2k" ,
-        key_secret:"uvyQRjRftXcdY75gE9SQVh0m" ,
-        amount: Number(cartTotal*100) ,
-        currency: "INR",
-        order_receipt: 'order_rcptid_' + addressInfo.name,
-        name: "Response",
-        description: "for testing purpose",
-        handler: function (response) {
-            console.log(response)
-            toast.success('Payment Successful')
-
-            const paymentId = response.razorpay_payment_id
-
-            const orderInfo = {
-                cartItems, 
-                addressInfo, 
-                email : user.email,
-                userId : user.uid,
-                status : "confirmed",
-                time : Timestamp.now(),
-                date : new Date().toLocaleString(
-                    "en-US",{
-                        month : "short",
-                        day : "2-digit",
-                        year : "numeric",
-                    }
-                ),
-                paymentId
-
-            }
-        
-            try{
-                const orderRef = collection(fireDB , 'order');
-                addDoc(orderRef , orderInfo);
-                setAddressInfo({
-                    name : "",
-                    address:"",
-                    pincode:"",
-                    mobileNum: "",
-                })
-                toast.success("Order placed Successfully")
-            }catch(error){
-                console.log(error)
-                toast.success("Order not placed Successfully")
-            }
-        
-
-
-        },
+    }  
     
-        theme: {
-            color: "#3399cc"
-        }
-    };
-    
-    var pay = new window.Razorpay(options);
-    pay.open();
-    console.log(pay);
+    const orderInfo = {
+        cartItems, 
+        addressInfo, 
+        email : user.email,
+        userId : user.uid,
+        status : "confirmed",
+        time : Timestamp.now(),
+        date : new Date().toLocaleString(
+            "en-US",{
+                month : "short",
+                day : "2-digit",
+                year : "numeric",
+            }
+        ),
+    }
+
+    try{
+        const orderRef = collection(fireDB , 'order');
+        addDoc(orderRef , orderInfo);
+        setAddressInfo({
+            name : "",
+            address:"",
+            pincode:"",
+            mobileNum: "",
+        })
+        toast.success("Order placed Successfully")
+    }catch(error){
+        console.log(error)
+        toast.success("Order not placed Successfully")
+    }  
    }
-
 
     return (
         <Layout>

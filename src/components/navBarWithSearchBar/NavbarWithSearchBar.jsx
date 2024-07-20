@@ -48,10 +48,10 @@ const NavbarWithSearchBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium"
+        className="flex items-center gap-x-2 p-1 font-medium hover:text-color "
       >
        <House />
-        <Link to="/" className="flex items-center">Home</Link>
+        <Link to="/" className="flex items-center underline ">Home</Link>
       </Typography>
 
       <Typography

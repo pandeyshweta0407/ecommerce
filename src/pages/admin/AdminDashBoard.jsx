@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import User from '../../assets/user.png';
+
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import ProductDetail from '../../components/admin/ProductDetail';
 import OrderDetail from '../../components/admin/OrderDetail';
@@ -7,10 +8,12 @@ import UserDetail from '../../components/admin/UserDetail';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../../context/myContext';
 
+import { ShoppingBasket } from 'lucide-react';
+
 const AdminDashBoard = () => {
 
     const context = useContext(myContext);
-    const {getAllProduct} = context ;
+    const {getAllProduct , getAllOrder , getAllUser} = context ;
    
     const user = JSON.parse(localStorage.getItem('users'));
 
@@ -106,7 +109,7 @@ const AdminDashBoard = () => {
                                         <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
                                     </svg>
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >{getAllOrder.length}</h2>
                                 <p className=" text-black-500  font-bold" >Total Order</p>
                             </div>
                         </Tab>
@@ -132,7 +135,7 @@ const AdminDashBoard = () => {
                                         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                     </svg>
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-black-400 fonts1" >{getAllUser.length}</h2>
                                 <p className=" text-black-500  font-bold" >Total User</p>
                             </div>
                         </Tab>

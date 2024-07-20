@@ -75,7 +75,7 @@ const BuyNowModel = ({ addressInfo , setAddressInfo , buyNowFunction }) => {
             }}
             className="w-full px-4 py-3 text-center text-gray-100 bg-pink-600 border border-transparent dark:border-gray-700 rounded-lg"
             >
-                Buy Now
+                Order now
             </Button>
             </div>
         </DialogBody>
