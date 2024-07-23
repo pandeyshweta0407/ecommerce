@@ -24,17 +24,6 @@ const NavbarWithSearchBar = () => {
 
   const cartItems = useSelector((state)=>state.cart);
 
-  
-
-     
- 
-
-
-
-
-
-  
- 
   React.useEffect(() => {
     window.addEventListener(
       "resize",

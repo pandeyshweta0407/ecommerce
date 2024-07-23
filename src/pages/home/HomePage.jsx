@@ -12,12 +12,10 @@ const HomePage = () => {
   return (
        <div>
         {
-          user ?  ( <Layout>
+          <Layout>
             <HeroSection/>
             <HomePageProductCard/>
-            </Layout>
-            )  : ( <Login/> ) 
-       
+          </Layout>
         }
        </div>
 
