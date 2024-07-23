@@ -37,10 +37,10 @@ const NavbarWithSearchBar = () => {
         as="li"
         variant="small"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium hover:text-color "
+        className="flex items-center gap-x-2 p-1 font-medium  "
       >
        <House />
-        <Link to="/" className="flex items-center underline ">Home</Link>
+        <Link to="/" className="flex items-center underline hover:text-cyan-500 ">Home</Link>
       </Typography>
 
       <Typography
@@ -50,7 +50,7 @@ const NavbarWithSearchBar = () => {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <Grid2X2 />
-        <a href="/allproduct" className="flex items-center">
+        <a href="/allproduct" className="flex items-center hover:text-cyan-500">
           All Products
         </a>
       </Typography>
@@ -61,7 +61,7 @@ const NavbarWithSearchBar = () => {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
          <ShoppingCart />
-        <a href="/cart" className="flex items-center">
+        <a href="/cart" className="flex items-center hover:text-cyan-500">
           Cart({cartItems.length})
         </a>
       </Typography>
@@ -73,7 +73,7 @@ const NavbarWithSearchBar = () => {
         className="flex items-center gap-x-2 p-1 font-medium"
       >
         <CircleUserRound />
-        <a href="/user-dashboard" className="flex items-center">
+        <a href="/user-dashboard" className="flex items-center hover:text-cyan-500">
           Account
         </a>
       </Typography>

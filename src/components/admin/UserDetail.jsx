@@ -19,31 +19,31 @@ const UserDetail = () => {
         </div>
         {/* table  */}
         <div className="w-full overflow-x-auto">
-            <table className="w-full text-left border border-collapse sm:border-separate border-neutral-600 text-black" >
+            <table className="w-full text-left border border-collapse sm:border-separate border-neutral-900 rounded-2xl text-black" >
                 <tbody>
                     <tr>
                         <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black  font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black  font-bold fontPara">
                         S.No  
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black font-bold fontPara">
                         Name 
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black font-bold fontPara">
                         Email
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black font-bold fontPara">
                         Uid
                         </th>
                             <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black font-bold fontPara">
                         Role
                         </th>
                         <th scope="col"
-                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-600 text-black font-bold fontPara">
+                            className="h-12 px-6 text-md border-l first:border-l-0 border-neutral-900 text-black font-bold fontPara">
                         Date
                         </th>
                     </tr>
@@ -54,23 +54,23 @@ const UserDetail = () => {
                             return(
                                 <tr  key={index} className="text-pink-300">
                                 <td 
-                                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black ">
+                                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black ">
                                 {index + 1 } 
                                 </td>
                                 <td 
-                                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black first-letter:uppercase ">
+                                className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black first-letter:uppercase ">
                                     {name}
                                 </td>
-                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black cursor-pointer ">
+                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black cursor-pointer ">
                                     {email}
                                 </td>
-                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black cursor-pointer ">
+                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black cursor-pointer ">
                                     {uid}
                                 </td>
-                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black cursor-pointer ">
+                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black cursor-pointer ">
                                     {role}
                                 </td>
-                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-600 text-black cursor-pointer ">
+                                <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-neutral-900 text-black cursor-pointer ">
                                     {date}
                                 </td>
                                    </tr>
