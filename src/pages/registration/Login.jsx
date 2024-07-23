@@ -148,7 +148,7 @@ const Login = () => {
         <Button onClick={handleLogin} color="gray" size="lg" className="mt-6" fullWidth>
           sign in
         </Button>
-        <div className="!mt-4 flex justify-end">
+        {/* <div className="!mt-4 flex justify-end">
           <Typography
             as="a"
             href="#"
@@ -162,8 +162,8 @@ const Login = () => {
 
 
 
-        </div>
-        <div className="!mt-4 flex justify-center">
+        </div> */}
+        {/* <div className="!mt-4 flex justify-center">
           <Typography
             as="a"
             href="#"
@@ -173,8 +173,8 @@ const Login = () => {
           >
             or
           </Typography>          
-        </div>
-        <Button    
+        </div> */}
+        {/* <Button    
           variant="outlined"
           size="lg"
           className="mt-6 flex h-12 items-center justify-center gap-2"
@@ -186,7 +186,7 @@ const Login = () => {
             className="h-6 w-6"
           />{" "}
           sign in with google
-        </Button>
+        </Button> */}
         <Typography
           variant="small"
           color="gray"
