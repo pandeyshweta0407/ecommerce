@@ -34,7 +34,7 @@ const App = () => {
         <ProdectedRouteForUser>
           <UserDashBoard/>
         </ProdectedRouteForUser>
-      } />
+      } /> 
       <Route path="/admin-dashboard" element={
         <ProdectedRouteForAdmin>
         <AdminDashBoard/>
