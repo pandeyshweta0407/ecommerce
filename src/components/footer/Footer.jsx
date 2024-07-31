@@ -3,7 +3,7 @@ import { Typography } from "@material-tailwind/react";
 const LINKS = [
   {
     title: "Contant us",
-    items: ["Jethwara", "+91 9310335003", "response@gmail.com"],
+    items: ["response@gmail.com"],
   },
   
 ];
