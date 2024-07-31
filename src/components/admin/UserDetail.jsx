@@ -7,7 +7,7 @@ const UserDetail = () => {
    const context = useContext(myContext);
    const {getAllUser} = context;
 
-   console.log(getAllUser)
+//    console.log(getAllUser)
 
 
   return (

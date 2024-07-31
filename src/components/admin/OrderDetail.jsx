@@ -5,7 +5,7 @@ const OrderDetail = () => {
 
     const context = useContext(myContext);
     const {getAllOrder , deleteOrder } = context;
-    console.log(getAllOrder);
+    // console.log(getAllOrder);
  
   return (    
     <div>

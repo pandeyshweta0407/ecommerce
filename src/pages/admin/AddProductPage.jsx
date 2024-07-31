@@ -51,7 +51,7 @@ const AddProductPage = () => {
       })
     }
 
-    console.log(product)
+    // console.log(product)
 
      const handleSubmit = async (e)=>{
           e.preventDefault();

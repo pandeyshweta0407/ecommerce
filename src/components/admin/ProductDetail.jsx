@@ -12,7 +12,7 @@ const ProductDetail = () => {
 
   const navigate = useNavigate();
 
-  console.log(getAllProduct);
+  // console.log(getAllProduct);
 
   const deleteProduct = async (id) => {
     setLoading(true);
@@ -22,7 +22,7 @@ const ProductDetail = () => {
       getAllProductFunction();
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setLoading(false);
     }
   };

@@ -36,7 +36,7 @@ const cartItemTotal = cartItems.map(item => item.quantity).reduce((prevValue, cu
 
 const cartTotal = cartItems.map(item => item.price * item.quantity).reduce((prevValue, currValue) => prevValue + currValue, 0);
  
-console.log(cartTotal);
+// console.log(cartTotal);
 
   useEffect(()=>{
         localStorage.setItem('cart' , JSON.stringify(cartItems));

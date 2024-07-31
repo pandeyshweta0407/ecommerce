@@ -54,7 +54,7 @@ const UpadateProductPage = () => {
         try{
           const productTemp = await getDoc(doc(fireDB, "product" , id))
           const product = productTemp.data();
-          console.log(product)
+          // console.log(product)
 
           setProduct({
             title:product?.title,
